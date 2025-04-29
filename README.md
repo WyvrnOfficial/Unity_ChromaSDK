@@ -91,13 +91,37 @@ To use the Chroma SDK first install the new [Razer Synapse and Chroma App](https
 
 To import the Chroma SDK into Unity using the Unity Package Manager, follow these steps:
 
-1. Open the Unity Package Manager, then click the `+` button in the toolbar. Select `Add package from git URL` from the menu.
+---
+
+* Open the Unity Package Manager, then click the `+` button in the toolbar.
+
+**Add the Chroma SDK package from disk or by URL**
+
+---
+
+Option 1) **Add package from disk**
+
+* Select `Add package from disk...` from the menu.
+
+![image_53](images/image_53.png)
+
+* Download this repository and browse to `package.json` file of the local copy.
+
+![image_54](images/image_54.png)
+
+---
+
+Option 2) **Add package from git URL**
+
+* Select `Add package from git URL` from the menu.
 
 ![image_49](images/image_49.png)
 
-2. In the text box that appears, enter the URL [https://github.com/WyvrnOfficial/Unity_ChromaSDK.git](https://github.com/WyvrnOfficial/Unity_ChromaSDK.git) and click Add.
+* In the text box that appears, enter the URL [https://github.com/WyvrnOfficial/Unity_ChromaSDK.git](https://github.com/WyvrnOfficial/Unity_ChromaSDK.git) and click Add.
 
-If the installation is successful, the `Razer Chroma SDK` package will appear in the package list with the `git` tag.
+---
+
+If either installation option is successful, the `Razer Chroma SDK` package will appear in the package list with the `git` tag.
 
 ![image_50](images/image_50.png)
 
@@ -123,32 +147,6 @@ Example scenes use `TextMesh Pro` so you may need to import `TMP Essentials` aft
 
 For `Windows PC` builds the `RzChromatic.dll` and `RzChromaStreamPlugin.dll` are not packaged with the build. These libraries are automatically updated and managed by Synapse and the Chroma Connect module. Avoid including these files in your build folder for `Windows PC` builds.
 
-**32-bit libraries**
-
-```
-(Unity Editor 4.X or better)
-Packages\RazerChromaSDK\Runtime\Plugins\x86\CChromaEditorLibrary.dll
-
-(Standalone 32-bit builds)
-Win32BuildFolder\Project_Data_Folder\Plugins\x86\CChromaEditorLibrary.dll
-```
-
-**64-bit libraries**
-
-```
-(Unity Editor 4.X or better)
-Packages\RazerChromaSDK\Runtime\Plugins\x64\CChromaEditorLibrary64.dll
-
-(Standalone 64-bit builds)
-Win64BuildFolder\Project_Data_Folder\Plugins\x64\CChromaEditorLibrary64.dll
-```
-
-<a name="windows-cloud"></a>
-
-## Windows Cloud
-
-`Windows Cloud` builds run on cloud platforms using `Windows` such as `Amazon Luna`, `Microsoft Game Pass`, and `NVidia GeForce Now`. Game instances run in the cloud without direct access to Chroma hardware. Chroma effects stream across the Internet to reach your local machine and connected hardware. No extra code is required to add Cloud support. In the case with `NVidia GeForce Now`, the cloud runs the same Epic Games and Steam builds as the desktop version and support Chroma streaming. Viewers can watch the cloud stream via the [Razer Stream Portal](https://stream.razer.com/).
-
 <a name="sdk-integration"></a>
 
 ## SDK Integration
@@ -170,8 +168,6 @@ The SDK integration process involves the following:
 7. [Performance](#performance)
 
 8. [Haptic Design](#haptic-design)
-
-9. [Modding](#modding)
 
 <a name="chroma-design"></a>
 
@@ -331,12 +327,6 @@ UseIdleAnimations
 ### Haptic Design
 
 Just like Chroma Designs, the Haptic Design can be provided by the team. Adding haptic support does not require adding assets to the game. Haptics can be added to a game without code changes and after the game has released. Haptics can be added through creation of a haptic configuration file. Developers can use the [Synesthesia Console](https://www.interhaptics.com/doc/chroma-sensa/#synesthesia) which automates creation of the haptic configuration file within `HapticFolders` and will add some mockup haptic files (simple haptic effect which can be edited with [Haptic Composer](https://www.interhaptics.com/download/)) when event names follow a naming convention. Haptic configuration files are automatically distributed by the team through `Chroma App` updates.
-
-<a name="modding"></a>
-
-### Modding
-
-The decision to add Chroma mod support for a title is completely up to the developer. If the developer decides to block modding, Chroma animations can be loaded from a byte array which sandboxes and protects against any modifications to the Chroma animation assets. If the developer wants to use modding, Chroma animation assets are placed within the installation directory. Modders can modify the Chroma animations assets that are loaded by the title. The API provides `CloseAnimation` which reloads the Chroma animation from disk. This allows Chroma animations to be modified externally without needing to relaunch the title. Chroma animation playback also supports relative paths from the content folder. Relative paths can be used to organize several mods within the content folder. The title can have a configuration menu that switches between mod subfolder names which changes the relative path for loading the Chroma animations. The [C++ Chroma Mod Sample](https://github.com/razerofficial/CSDK_ChromaModSample) shows how relative paths can be used to detect and use mods, which is applicable for any game or custom engine.
 
 <a name="general"></a>
 
