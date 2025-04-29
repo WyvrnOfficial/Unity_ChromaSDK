@@ -26,7 +26,6 @@ See [https://wyvrn.com](https://wyvrn.com) for the latest documentation about th
 * [Haptic Design](#haptic-design)
 * [General](#general)
 * [Chroma Sensa](#chroma-sensa)
-* [Synesthesia](#synesthesia)
 * [Namespace](#namespace)
 * [Initialize SDK](#initialize-sdk)
 * [Is Active](#is-active)
@@ -198,8 +197,6 @@ The developer specifies which game engine is used by the game so that a sample p
 ![image_10](images/image_10.png)
 
 * The [Chroma Design Converter](https://chroma.razer.com/ChromaDesignConverter/) can automatically port a web based Chroma Design to several languages and game engines.
-
-* The [Synesthesia Console](https://www.interhaptics.com/doc/chroma-sensa/#synesthesia) can generate haptic configurations automatically for your Chroma integration.
 
 <a name="integration"></a>
 
@@ -385,82 +382,6 @@ Targeting features can be **optionally** described for each haptics effect.
 * The following APIs are demonstrated in the `Assets\Scenes\Scene_Chromatic.unity` sample scene.
 
 ![image_1](images/image_1.png)
-
-<a name="synesthesia"></a>
-
-## Synesthesia
-
-The [Synesthesia Console](https://www.interhaptics.com/doc/chroma-sensa/#synesthesia) makes creating the haptics configuration for game integration super easy. Download and run the installer to get started creating a haptics config.
-
-1. Run `SynesthesiaStop.exe` to stop any existing background or haptic consoles
-
-![image_33](images/image_33.png)
-
-2. Run the `Synesthesia Console` for the interactive prompt
-
-![image_34](images/image_34.png)
-
-3. Enter option `1` and press `Enter` to listen for incoming commands
-
-![image_35](images/image_35.png)
-
-4. Launch your game that uses `PlayAnimation` or `SetEvent` directly to trigger haptic commands.
-
-When the application launches and initializes Chroma, the command to `load` the haptic configuration file is sent. When the application receives Chroma focus, the `active` command is sent. When `PlayAnimation` or `SetEvent` is called, the `play` command is sent.
-```
-Command Received : "load;C++ Game Sample Application"
-Command Received : "active;C++ Game Sample Application"
-Command Received : "play;Effect1"
-```
-
-![image_36](images/image_36.png)
-
-5. Play through all the game triggers to send any possible commands the game might use. This will be useful for generating the haptic configuration next.
-
-![image_37](images/image_37.png)
-
-6. Enter option `2` and press `Enter` to generate the haptics configuration
-
-![image_38](images/image_38.png)
-
-7. Enter option `0` and press `Enter` to use the detected application name used by the Chroma initialization
-
-![image_39](images/image_39.png)
-
-8. Enter option `0` and press `Enter` to use activate the new haptic configuration file. Now when the game triggers haptic events, the configured haptic events will play.
-
-![image_40](images/image_40.png)
-
-The `haptic.config` and `haps` default haptics effects were generated in the `HapticFolders` by the console. 
-
-![image_41](images/image_41.png)
-
-The `haptic.config` contains default targeting for the generated entries for each detected command.
-
-```json
-{
-    "ExternalCommands": [
-        {
-            "External_Command_ID": "Effect1",
-            "Haptic_Events": [
-                {
-                    "Haptic_Effect": "Effect1",
-                    "Loop": 1,
-                    "Mixing": "Override",
-                    "Targeting": [
-                        {
-                            "Gain": 1.0,
-                            "Spatialization": "Global",
-                            "Target": "All"
-                        }
-                    ]
-                }
-            ]
-        },
-		...
-	]
-}
-```
 
 <a name="namespace"></a>
 
